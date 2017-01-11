@@ -1,0 +1,25 @@
+
+<h4> Available Rentals </h4>
+
+<ul>
+  {{#each model.rentals as |rental|}}
+    {{rental-tile rental=rental}}
+  {{/each}}
+</ul>
+
+{{new-rental saveRental2="saveRental3"}}
+
+<h2> All Reviews </h2>
+
+<ul>
+  {{#each model.reviews as |review|}}
+    <li>{{review.rating}} - {{review.content}} - by {{review.author}}</li>
+  {{/each}}
+</ul>
+
+{{new-review saveReview="saveReview"}}
+
+<hr>
+
+{{#link-to 'about'}}About{{/link-to}}
+{{#link-to 'contact'}}Click here to contact us.{{/link-to}}
