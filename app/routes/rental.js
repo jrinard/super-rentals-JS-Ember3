@@ -14,8 +14,13 @@ export default Ember.Route.extend({
       rental.save();
       this.transitionTo('index');
     },
-    destroyRental(rental) {
-      rental.destroyRecord();
+    destroyRental(rental) {// this guarantees the reviews are deleted with the rentals
+      var review_deletions = rental.get('reviews').map(function(review) { //iterates over all the rental's reviews
+        return review.destroyRecord(); //destroys them one by one
+      });
+      Ember.RSVP.all(review_deletions).then(function() { //waits until all reviews are destroyed
+        return rental.destroyRecord(); //then destroys the rental
+      });
       this.transitionTo('index');
     },
     saveReview(params) {
@@ -26,6 +31,10 @@ export default Ember.Route.extend({
         return rental.save(); // Wait until "newReview" has finished saving, then save "rental" too, so it remembers it contains "newReview".
       });
       this.transitionTo('rental', rental); // Afterwards, take us to the page displaying details for "rental".
+    },
+    destroyReview(review) {
+      review.destroyRecord();
+      this.transitionTo('index');
     }
   }
 });
