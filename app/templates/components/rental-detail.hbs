@@ -1,6 +1,10 @@
+<div class="well">
+
+
+
 Located in {{rental.city}}, this {{rental.bedrooms}} bedroom {{rental.type}} is
 available by arrangement through {{rental.owner}}.
-<br>
+<br><br>
 <p><img src={{rental.image}} alt={{rental.type}}></p>
 
 
@@ -11,4 +15,5 @@ available by arrangement through {{rental.owner}}.
   {{/each}}
 </ul>
 
-<button {{action 'delete' rental}}>Delete</button>
+<button class="btn" {{action 'delete' rental}}>Delete</button>
+</div>

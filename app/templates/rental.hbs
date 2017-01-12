@@ -1,7 +1,13 @@
-<h2>More information about {{model.owner}}'s {{model.type}}:</h2>
 
-{{update-rental rental=model update="update"}}
+
+
+<h4>{{model.owner}}</h4>
+
 
 {{rental-detail rental=model destroyRental="destroyRental"}}
+
+<div class="pull-right">
+{{update-rental rental=model update="update"}}<br>
+</div>
 
 {{new-review saveReview="saveReview" rental=model}}
